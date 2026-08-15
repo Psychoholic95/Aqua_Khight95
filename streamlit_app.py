@@ -14,7 +14,10 @@ st.write(
     "condition of the water and receive recommendations."
 )
 
-# Sensor inputs
+# --------------------------------------------------
+# SENSOR INPUTS
+# --------------------------------------------------
+
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
@@ -47,15 +50,32 @@ with col4:
 
 st.divider()
 
+# --------------------------------------------------
+# ANALYZE WATER
+# --------------------------------------------------
+
 if st.button("🔍 Analyze Water", use_container_width=True):
 
     issues = []
     recommendations = []
     prevention = []
 
-    # -------------------------
+    # --------------------------------------------------
+    # SHOW ACTUAL WATER READINGS FIRST
+    # --------------------------------------------------
+
+    st.header("💧 Water Readings")
+
+    st.write(f"**1. Temperature:** {temperature} °C")
+    st.write(f"**2. pH:** {ph}")
+    st.write(f"**3. TDS:** {tds} ppm")
+    st.write(f"**4. Turbidity:** {turbidity} NTU")
+
+    st.divider()
+
+    # --------------------------------------------------
     # pH ANALYSIS
-    # -------------------------
+    # --------------------------------------------------
 
     if ph < 6.5:
 
@@ -91,9 +111,9 @@ if st.button("🔍 Analyze Water", use_container_width=True):
             "Maintain regular pH monitoring to identify unusual changes."
         ])
 
-    # -------------------------
+    # --------------------------------------------------
     # TDS ANALYSIS
-    # -------------------------
+    # --------------------------------------------------
 
     if tds > 500:
 
@@ -112,9 +132,9 @@ if st.button("🔍 Analyze Water", use_container_width=True):
             "Compare TDS readings over time to identify recurring pollution sources."
         ])
 
-    # -------------------------
+    # --------------------------------------------------
     # TURBIDITY ANALYSIS
-    # -------------------------
+    # --------------------------------------------------
 
     if turbidity > 5:
 
@@ -134,9 +154,9 @@ if st.button("🔍 Analyze Water", use_container_width=True):
             "Regularly monitor turbidity to identify recurring pollution events."
         ])
 
-    # -------------------------
+    # --------------------------------------------------
     # TEMPERATURE ANALYSIS
-    # -------------------------
+    # --------------------------------------------------
 
     if temperature > 35:
 
@@ -155,9 +175,9 @@ if st.button("🔍 Analyze Water", use_container_width=True):
             "Continue temperature monitoring to identify unusual changes."
         ])
 
-    # -------------------------
-    # OVERALL RESULT
-    # -------------------------
+    # --------------------------------------------------
+    # OVERALL WATER QUALITY ASSESSMENT
+    # --------------------------------------------------
 
     st.header("📊 Water Quality Assessment")
 
@@ -179,9 +199,9 @@ if st.button("🔍 Analyze Water", use_container_width=True):
             "🚨 Multiple water-quality concerns detected."
         )
 
-    # -------------------------
+    # --------------------------------------------------
     # DETECTED CONDITIONS
-    # -------------------------
+    # --------------------------------------------------
 
     st.subheader("🔎 Detected Conditions")
 
@@ -196,9 +216,9 @@ if st.button("🔍 Analyze Water", use_container_width=True):
             "No major parameter concerns detected."
         )
 
-    # -------------------------
+    # --------------------------------------------------
     # RECOMMENDED ACTIONS
-    # -------------------------
+    # --------------------------------------------------
 
     st.subheader("🛠️ Recommended Actions")
 
@@ -214,15 +234,15 @@ if st.button("🔍 Analyze Water", use_container_width=True):
             "water body if other signs of pollution are observed."
         )
 
-    # -------------------------
+    # --------------------------------------------------
     # POLLUTION PREVENTION
-    # -------------------------
+    # --------------------------------------------------
 
     st.subheader("🌱 Pollution Prevention")
 
     if prevention:
 
-        # Remove duplicate recommendations
+        # Remove duplicate prevention recommendations
         unique_prevention = list(dict.fromkeys(prevention))
 
         for item in unique_prevention:
@@ -235,7 +255,8 @@ if st.button("🔍 Analyze Water", use_container_width=True):
         )
 
         st.write(
-            "• Prevent solid waste and untreated wastewater from entering the water body."
+            "• Prevent solid waste and untreated wastewater "
+            "from entering the water body."
         )
 
         st.write(
@@ -245,6 +266,10 @@ if st.button("🔍 Analyze Water", use_container_width=True):
         st.write(
             "• Investigate sudden changes in water-quality measurements."
         )
+
+    # --------------------------------------------------
+    # DISCLAIMER
+    # --------------------------------------------------
 
     st.divider()
 
